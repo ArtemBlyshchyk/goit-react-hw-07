@@ -1,9 +1,9 @@
 import css from "./ContactForm.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { nanoid } from "nanoid";
+// import { nanoid } from "nanoid";
 import * as Yup from "yup";
-import { addContact } from "../../redux/contactsSlice";
 import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsOps";
 
 const contactUserSchema = Yup.object().shape({
   name: Yup.string()
@@ -26,11 +26,7 @@ const ContactForm = () => {
 
   //Функція додавання зміни стану новими даними ФОРМИ
   const onAddContact = (formData) => {
-    const newContact = {
-      ...formData,
-      id: nanoid(),
-    };
-    dispatch(addContact(newContact));
+    dispatch(addContact(formData));
   };
 
   //Функція для збору інформації з форми
